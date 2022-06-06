@@ -6,6 +6,7 @@
 package com.mycompany.pmis1;
 
 import BD.Conexion;
+import Interfaz.PantallaPrincipal;
 
 /**
  *
@@ -16,5 +17,6 @@ public class PMIS1 {
          Conexion con  = new Conexion();
           con.Conectar();
           con.Cerrar();
+         // PantallaPrincipal.main(args);
     }
 }
