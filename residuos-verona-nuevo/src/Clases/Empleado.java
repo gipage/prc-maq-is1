@@ -9,13 +9,13 @@ package Clases;
  */
 public class Empleado {
     private String nombre;
-    private  int dni;
+    private String dni;
     private String legajo;
     private String telefono;
     private String direccion;
     private String cargo;
 
-    public Empleado(String nombre, int dni, String legajo, String telefono, String direccion, String cargo) {
+    public Empleado(String nombre, String dni, String legajo, String telefono, String direccion, String cargo) {
         this.nombre = nombre;
         this.dni = dni;
         this.legajo = legajo;
@@ -23,6 +23,7 @@ public class Empleado {
         this.direccion = direccion;
         this.cargo = cargo;
     }
+
 
     public String getNombre() {
         return nombre;
@@ -32,11 +33,11 @@ public class Empleado {
         this.nombre = nombre;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
@@ -71,6 +72,6 @@ public class Empleado {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
-
+    
     
 }

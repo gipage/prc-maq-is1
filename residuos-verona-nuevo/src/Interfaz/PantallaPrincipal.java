@@ -40,6 +40,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         getContentPane().add(BTNinicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 272, 70, 60));
 
         BTNgestionE.setContentAreaFilled(false);
+        BTNgestionE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNgestionEActionPerformed(evt);
+            }
+        });
         getContentPane().add(BTNgestionE, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 382, 70, 60));
 
         BTNcamiones.setContentAreaFilled(false);
@@ -67,6 +72,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         new PantallaCamiones().setVisible(true);
 
     }//GEN-LAST:event_BTNcamionesActionPerformed
+
+    private void BTNgestionEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNgestionEActionPerformed
+        // TODO add your handling code here:
+     ElegirCU elegir = new ElegirCU();
+     elegir.setVisible(true);
+     this.setVisible(false);
+    }//GEN-LAST:event_BTNgestionEActionPerformed
 
     /**
      * @param args the command line arguments

@@ -26,13 +26,14 @@ public class Conexion {
         return conn;
     }
     
-    public void Cerrar(){
+    public Connection Cerrar(){
         try{
             conn.close();
             System.out.println("Desconexion exitosa"); 
         }catch(Exception e){
             System.out.println("Desconexion fallida"); 
         }
+        return conn;
     }
     
 }

@@ -96,12 +96,24 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="jTFnom">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFnomKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFdni">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFdniKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFlegajo">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFlegajoKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFtel">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFtelKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFdir">
     </Component>

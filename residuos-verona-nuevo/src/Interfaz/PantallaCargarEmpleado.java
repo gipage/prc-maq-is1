@@ -6,9 +6,9 @@ package Interfaz;
 
 import BD.Conexion;
 import Clases.Empleado;
-import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
+
 
 
 /**
@@ -24,29 +24,39 @@ public class PantallaCargarEmpleado extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    public void Cargar (){
+public void Cargar (){
     
-        if(jTFnom.getText().equals("")|| jTFdni.getText().equals("") || jTFlegajo.getText().equals("") || jTFtel.getText().equals("") || jTFdir.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Complete todos los campos.");}
-          
-        Empleado emp = new Empleado(jTFnom.getText(), parseInt(jTFdni.getText()),jTFlegajo.getText(), jTFtel.getText(), jTFdir.getText(), (String) jCBcargo.getSelectedItem());
+  if((jTFnom.getText().trim().isEmpty())|| (jTFdni.getText().trim().isEmpty()) || (jTFlegajo.getText().trim().isEmpty()) || (jTFtel.getText().isEmpty()) || (jTFdir.getText().trim().isEmpty())){
+      JOptionPane.showMessageDialog(this, "Complete todos los campos.");
+      
+      }
+  else{     
+        Empleado emp = new Empleado(jTFnom.getText(), jTFdni.getText(),jTFlegajo.getText(), jTFtel.getText(), jTFdir.getText(), (String) jCBcargo.getSelectedItem());
          
         Conexion con  = new Conexion();//creo la conexion
         
         try{
              Connection connect  = con.Conectar();//abro la conexion
              java.sql.Statement st = connect.createStatement(); //objeto para realizar la consulta
-             String sql = "INSERT INTO empleados(edni, enombre, elegajo, etel, edireccion, ecargo) VALUES ("+emp.getDni()+", '"+emp.getNombre()+"', '"+emp.getLegajo()+"', '"+emp.getTelefono()+"', '"+emp.getDireccion()+"', '"+emp.getCargo()+"');";
+             String sql = "INSERT INTO empleados(edni, enombre, elegajo, etel, edireccion, ecargo) VALUES ('"+emp.getDni()+"', '"+emp.getNombre()+"', '"+emp.getLegajo()+"', '"+emp.getTelefono()+"', '"+emp.getDireccion()+"', '"+emp.getCargo()+"');";
              st.execute(sql);
-             JOptionPane.showMessageDialog(this, "Carga exitosa.");
              st.close();
-             connect.close();
-         JOptionPane.showMessageDialog(this, "Carga exitosa.");
+             connect = con.Cerrar();//cierro la conexion
+             JOptionPane.showMessageDialog(this, "Carga exitosa.");
+              jTFnom.setText("");
+         jTFdni.setText("");
+         jTFlegajo.setText("");
+         jTFtel.setText("");
+         jTFdir.setText("");
+       this.setVisible(false);
+        PantallaPrincipal p = new PantallaPrincipal();
+        p.setVisible(true);
         }catch(Exception e)
         {
         JOptionPane.showMessageDialog(this, "Carga Fallida.");
         }
-
+      } 
+  
     }
          
     
@@ -75,6 +85,30 @@ public class PantallaCargarEmpleado extends javax.swing.JFrame {
         jCBcargo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTFnom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFnomKeyTyped(evt);
+            }
+        });
+
+        jTFdni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFdniKeyTyped(evt);
+            }
+        });
+
+        jTFlegajo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFlegajoKeyTyped(evt);
+            }
+        });
+
+        jTFtel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFtelKeyTyped(evt);
+            }
+        });
 
         JLnombre.setText("Nombre");
 
@@ -163,14 +197,59 @@ public class PantallaCargarEmpleado extends javax.swing.JFrame {
 
     private void jBagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagregarActionPerformed
         // TODO add your handling code here:
-        Cargar();
-          jTFnom.setText("");
+         Cargar();
+        /* jTFnom.setText("");
          jTFdni.setText("");
          jTFlegajo.setText("");
          jTFtel.setText("");
          jTFdir.setText("");
-        this.setVisible(false);
+       this.setVisible(false);
+        PantallaPrincipal p = new PantallaPrincipal();
+        p.setVisible(true);*/
     }//GEN-LAST:event_jBagregarActionPerformed
+
+    private void jTFnomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFnomKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();        //se almacena el caracter de la tecla presionada
+        boolean mayusculas = key>=65 && key<=90;    //ASCII 
+        boolean minusculas = key>=97 && key<=122;
+        boolean espacio = key==32;
+        if(!(mayusculas||minusculas||espacio)){
+            evt.consume();                 //no recibe los caracteres
+        }
+        
+        
+    }//GEN-LAST:event_jTFnomKeyTyped
+
+    private void jTFdniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFdniKeyTyped
+        // TODO add your handling code here:
+         int key = evt.getKeyChar();        //se almacena el caracter de la tecla presionada
+        boolean numeros = key>=48 && key<=57;    //ASCII números
+        if(!numeros){
+            evt.consume();                 //no recibe los caracteres
+        }
+        
+        if(jTFdni.getText().length()>=8){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFdniKeyTyped
+
+    private void jTFtelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFtelKeyTyped
+        // TODO add your handling code here:
+         int key = evt.getKeyChar();        //se almacena el caracter de la tecla presionada
+        boolean numeros = key>=48 && key<=57;    //ASCII números
+        if(!numeros){
+            evt.consume();                 //no recibe los caracteres
+        }
+        if(jTFtel.getText().length()>=20){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFtelKeyTyped
+
+    private void jTFlegajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFlegajoKeyTyped
+        // TODO add your handling code here:
+       if(jTFlegajo.getText().length() >=6 ){ evt.consume(); }
+    }//GEN-LAST:event_jTFlegajoKeyTyped
 
     /**
      * @param args the command line arguments

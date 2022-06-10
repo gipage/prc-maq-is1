@@ -15,6 +15,7 @@ public class PantallaCamiones extends javax.swing.JFrame {
      */
     public PantallaCamiones() {
         initComponents();
+         this.setLocationRelativeTo(null);
     }
 
     /**
